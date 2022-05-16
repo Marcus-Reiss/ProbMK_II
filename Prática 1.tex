@@ -5,6 +5,7 @@
 \usepackage{amsthm}
 \usepackage{indentfirst}
 \usepackage{graphicx}
+\usepackage{gensymb}
 \title{Universidade de São Paulo \\ EESC}
 \author{SEM0530 - Problemas de Engenharia Mecatrônica II \\ 
 Prof. Marcelo Areias Trindade \\ \\ Prática 1 - Zeros de funções
@@ -164,6 +165,12 @@ Prof. Marcelo Areias Trindade \\ \\ Prática 1 - Zeros de funções
 	
 	O Gráfico 1 mostra tal empreitada.
 	
+	\begin{figure}[!htb]
+		\centering
+		\includegraphics[scale=1]{g1.png}
+		\caption{Curva do polinômio g (Gráfico 1)}
+	\end{figure}
+	
 	\subsubsection{Parte 2}
 	
 	O foco, no entanto, está na análise do gráfico que representa a curva de rigidez efetiva e sua variação com respeito 
@@ -174,6 +181,32 @@ Prof. Marcelo Areias Trindade \\ \\ Prática 1 - Zeros de funções
 	
 	Faz-se importante, primordialmente, a análise da curva para duas situações, sendo elas: quando o deslocamento $u$ tende
 	a ser nulo ($u\rightarrow 0$) e quando $u$ tende a $h$ ($u\rightarrow h$).
+	
+	Iniciando pela primeira situação, é válido interpretar seu significado no contexto do problema original. O deslocamento
+	estático em questão ocorre em decorrência da ação da carga $W$ aplicada, como já citado anteriormente.  Sendo assim, se
+	$u$ tende a zero, então o sistema tende a uma situação na qual inexiste aplicação de carga. Portanto, a rigidez efetiva
+	será uma equivalência à geometria das molas na situação indeformada. 
+	
+	Pensando em uma circunstância hipotética na qual
+	as molas estivessem ambas na vertical, a rigidez efetiva seria dada por $k_{ef}=2k$. Todavia, como o ângulo entre as 
+	molas e o chão é de aprox. $66.43\degree =\sin ^{-1}(h/L)$, espera-se um valor de $k_{ef}$ próximo de $2k=20\,kN/m$.
+	
+	Observando o Gráfico 2, tem-se que a intuição anterior se mostra correta, tendo em vista que o valor de $k_{ef}$ tende
+	a algum valor entre $16\,kN/m$ e $17\,kN/m$. Vale, ainda, ressaltar, que o ponto exato da curva para o qual $u=0$ não
+	é definido, já que, pela eq. 6, estaria-se dividindo a expressão por zero. Trata-se de um ponto de descontinuidade 
+	removível.
+	
+	No que diz respeito à segunda situação (quando $u\rightarrow h$), entende-se que as molas estariam convergindo para uma
+	circunstância na qual ambas estariam na horizontal. Dessa maneira, não haveria força restauradora atuando na direção
+	vertical, e a rigidez efetiva seria, por conseguinte, nula.
+	
+	Pelo gráfico, observa-se que $u=0.4583$ é zero da função, ou seja, $k_{ef}(0.4583)=0$, cofirmando o que foi discutido.
+	
+	\begin{figure}[!htb]
+		\centering
+		\includegraphics[scale=1]{g2.png}
+		\caption{Curva de rigidez efetiva (Gráfico 2)}
+	\end{figure}
 			
 \end{document}
 
