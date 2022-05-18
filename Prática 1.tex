@@ -6,6 +6,7 @@
 \usepackage{indentfirst}
 \usepackage{graphicx}
 \usepackage{gensymb}
+\usepackage{float}
 \title{Universidade de São Paulo \\ EESC}
 \author{SEM0530 - Problemas de Engenharia Mecatrônica II \\ 
 Prof. Marcelo Areias Trindade \\ \\ Prática 1 - Zeros de funções
@@ -108,7 +109,7 @@ Prof. Marcelo Areias Trindade \\ \\ Prática 1 - Zeros de funções
 	$g(v)=0$.
 	
 	Antes, porém, utilizou-se dos dados numéricos do problema para determinar o polinômio:
-	$$g(v)=400v^4+103.59v^3-77.293v^2+4.1437v+0.2683$$
+	$$g(v)=400v^4+103.59v^3-77.293v^2+4.1437v+0.2683\,\,\,(7)$$
 	
 	Vale ressaltar que foi utilizado $W=Mg=(264\,kg)(9.81\,m/s^2)=2.5898\,kN$, bem como $h=0.4583\,m$, obtido a partir
 	da relação $h=(L^2-d^2)^{1/2}$.
@@ -165,7 +166,7 @@ Prof. Marcelo Areias Trindade \\ \\ Prática 1 - Zeros de funções
 	
 	O Gráfico 1 mostra tal empreitada.
 	
-	\begin{figure}[!htb]
+	\begin{figure}[H]
 		\centering
 		\includegraphics[scale=1]{g1.png}
 		\caption{Curva do polinômio g (Gráfico 1)}
@@ -192,7 +193,7 @@ Prof. Marcelo Areias Trindade \\ \\ Prática 1 - Zeros de funções
 	molas e o chão é de aprox. $66.43\degree =\sin ^{-1}(h/L)$, espera-se um valor de $k_{ef}$ próximo de $2k=20\,kN/m$.
 	
 	Observando o Gráfico 2, tem-se que a intuição anterior se mostra correta, tendo em vista que o valor de $k_{ef}$ tende
-	a algum valor entre $16\,kN/m$ e $17\,kN/m$. Vale, ainda, ressaltar, que o ponto exato da curva para o qual $u=0$ não
+	a alguma medida entre $16\,kN/m$ e $17\,kN/m$. Vale, ainda, ressaltar, que o ponto exato da curva para o qual $u=0$ não
 	é definido, já que, pela eq. 6, estaria-se dividindo a expressão por zero. Trata-se de um ponto de descontinuidade 
 	removível.
 	
@@ -200,13 +201,51 @@ Prof. Marcelo Areias Trindade \\ \\ Prática 1 - Zeros de funções
 	circunstância na qual ambas estariam na horizontal. Dessa maneira, não haveria força restauradora atuando na direção
 	vertical, e a rigidez efetiva seria, por conseguinte, nula.
 	
+	\newpage
+	
 	Pelo gráfico, observa-se que $u=0.4583$ é zero da função, ou seja, $k_{ef}(0.4583)=0$, cofirmando o que foi discutido.
+	
+	Uma última análise pertinente concerne ao comportamento da curva quando $u\rightarrow -\infty$. Fazendo analogia à 
+	situação real, pode-se pensar que o ângulo $\theta$ entre as molas e o anteparo estaria crescendo e tendendo a $\pi /2$,
+	de forma que, então, as molas tenderiam a estar dispostas na vertical, e paralelas entre si. Desse modo, depreeende-se 
+	que $k_{ef}$ seria simplesmente $2k$. De fato, a curva tem uma assíntota horizontal em $k_{ef}=20\,kN/m$.
+	
+	Por fim, vale ressaltar que a partir do ponto de deslocamento $u=h=0.4583\,m$, a curva não possui mais interpretação
+	física, já que teria-se atravessado a linha do anteparo.
 	
 	\begin{figure}[!htb]
 		\centering
 		\includegraphics[scale=1]{g2.png}
 		\caption{Curva de rigidez efetiva (Gráfico 2)}
 	\end{figure}
+	
+	\subsection{Análise do equilíbrio}
+	
+	Como foram encontrados dois valores distintos para o deslocamento estático $u$ que satisfazem o equilíbrio da estrutura, 
+	faz-se conveniente analisar a establidade do equilíbrio em cada ponto encontrado. 
+	
+	Para tal, pode-se interpretar o 
+	polinômio $g$ como a primeira derivada de uma função primitiva $G$, que não tem relação com o problema no momento. Fato é,
+	como os valores de $v$ encontrados são raízes de $g$, faz-se analogia à determinação de máximos e mínimos de funções 
+	(nesse caso seria analisada a primitiva $G$) para se utilizar do teste da segunda derivada e concluir a respeito da 
+	estabilidade do equilíbrio.
+	
+	Desse modo, a função segunda derivada de $G$ é a derivada primeira de $g$, de modo que se obtém:
+	$$z(v)=g'(v)\stackrel{(7)}{=}1600v^3+310.77v^2-154.586v+4.1437$$
+	
+	\newpage
+	
+	Utilizando o Octave, calculou-se o valor de $z$ nos pontos $v_2$ e $v_3$ (correspondentes a $u_I$ e $u_{II}$). Obteve-se:
+	$$z(v_2)=18.316>0\,,\,\,\,z(v_3)=-6.9075<0$$
+	
+	Dessa forma, conclui-se que o equilíbrio em $u=u_I$ é \textit{estável}, enquanto em $u=u_{II}$, \textit{instável}.
+	
+	Uma possível explicação sobre esses resultados pode ser obtida quando se observam os valores de $k_{ef}$ em cada situação.
+	Para $u=u_{II}$, o valor da rigidez efetiva é inferior à rigidez de cada mola sozinha. Isso aponta para uma certa 
+	instabilidade. Para $u=u_{II}$, esse valor é quase o dobro.
+	
+	Ademais, se há uma desestabilização em $u=u_{II}$, o sistema tende a retornar para a posição $u=u_{I}$, de equilíbrio
+	estável. 
 			
 \end{document}
 
