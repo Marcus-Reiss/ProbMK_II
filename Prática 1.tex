@@ -64,7 +64,7 @@ Prof. Marcelo Areias Trindade \\ \\ Prática 1 - Zeros de funções
 	\newpage
 	
 	Expandindo, tem-se: $$\frac{2kL(h-u)}{\sqrt{L^2+u(u-2h)}}-2k(h-u)=W \Longleftrightarrow 
-	\frac{2kL(h-u)}{\sqrt{L^2+u(u-2h)}}=W-2k(h-u)$$
+	\frac{2kL(h-u)}{\sqrt{L^2+u(u-2h)}}=W+2k(h-u)$$
 	
 	Quadrando ambos os membros da equação: $$\frac{4k^2L^2(h-u)^2}{L^2+u(u-2h)}=W^2+4Wk(h-u)+4k^2(h-u)^2$$
 	
@@ -82,13 +82,25 @@ Prof. Marcelo Areias Trindade \\ \\ Prática 1 - Zeros de funções
 	Desse modo, chegou-se a um polinômio de grau $4$ em $v$. Após a determinação de suas raízes, pode-se simplesmente 
 	retomar a mudança de variável e encontrar os respectivos valores para $u$.
 	
+	\begin{figure}[!htb]
+		\centering
+		\includegraphics[scale=0.7]{img6.png}
+		\caption{Situação geral (sistema deslocado de $u$)}
+	\end{figure}
+	
+	\begin{figure}[!htb]
+		\centering
+		\includegraphics[scale=0.7]{img7.png}
+		\caption{Diagrama de forças para o ponto material}
+	\end{figure}
+	
 	\subsubsection{Parte 2}
 	
 	Agora, volta-se o foco para a análise da rigidez efetiva ($k_{ef}$) do sistema em questão, bem como sua dependência 
 	em relação a $u$.
 	
 	A ideia baseia-se em encontrar um sistema hipotético equivalente ao original, no qual a carga $W$ seja balanceada 
-	por um força de mola equivalente $f_{m_e}$, que será dada por $$f_{m_e}=k_{ef}u\,,$$ onde $u$ é o deslocamento
+	por uma força de mola equivalente $f_{m_e}$, que será dada por $$f_{m_e}=k_{ef}u\,,$$ onde $u$ é o deslocamento
 	no sistema original.
 	
 	Sendo assim, $f_{m_e}$ deve ter módulo igual a $2f_m\sin \theta$, a resultante das forças elásticas na vertical 
@@ -136,21 +148,6 @@ Prof. Marcelo Areias Trindade \\ \\ Prática 1 - Zeros de funções
 	Assim, chegou-se aos seguintes valores utilizando $u=u_I$ e $u=u_{II}$: 
 	$$k_{ef}^{I}=14.115\,kN/m\,,\,\,k_{ef}^{II}=7.3923\,kN/m$$ 
 			
-	\subsection{Scripts}
-	
-	As figuras 3 e 4 mostram os scripts em Octave utilizados para os cálculos anteriores.
-	
-	\begin{figure}[!htb]
-		\centering
-		\includegraphics[scale=0.7]{img1.png}
-		\caption{Valores de $u$}
-	\end{figure}
-	
-	\begin{figure}[!htb]
-		\centering
-		\includegraphics[scale=0.7]{img2.png}
-		\caption{Valores de $k_{ef}$}
-	\end{figure}
 	
 	\newpage
 	
@@ -199,15 +196,13 @@ Prof. Marcelo Areias Trindade \\ \\ Prática 1 - Zeros de funções
 	
 	No que diz respeito à segunda situação (quando $u\rightarrow h$), entende-se que as molas estariam convergindo para uma
 	circunstância na qual ambas estariam na horizontal. Dessa maneira, não haveria força restauradora atuando na direção
-	vertical, e a rigidez efetiva seria, por conseguinte, nula.
-	
-	\newpage
+	vertical, e a rigidez efetiva seria, por conseguinte, nula.	
 	
 	Pelo gráfico, observa-se que $u=0.4583$ é zero da função, ou seja, $k_{ef}(0.4583)=0$, cofirmando o que foi discutido.
 	
 	Uma última análise pertinente concerne ao comportamento da curva quando $u\rightarrow -\infty$. Fazendo analogia à 
 	situação real, pode-se pensar que o ângulo $\theta$ entre as molas e o anteparo estaria crescendo e tendendo a $\pi /2$,
-	de forma que, então, as molas tenderiam a estar dispostas na vertical, e paralelas entre si. Desse modo, depreeende-se 
+	de forma que, então, as molas tenderiam a estar dispostas na vertical, e paralelas entre si. Desse modo, depreende-se 
 	que $k_{ef}$ seria simplesmente $2k$. De fato, a curva tem uma assíntota horizontal em $k_{ef}=20\,kN/m$.
 	
 	Por fim, vale ressaltar que a partir do ponto de deslocamento $u=h=0.4583\,m$, a curva não possui mais interpretação
@@ -231,9 +226,7 @@ Prof. Marcelo Areias Trindade \\ \\ Prática 1 - Zeros de funções
 	estabilidade do equilíbrio.
 	
 	Desse modo, a função segunda derivada de $G$ é a derivada primeira de $g$, de modo que se obtém:
-	$$z(v)=g'(v)\stackrel{(7)}{=}1600v^3+310.77v^2-154.586v+4.1437$$
-	
-	\newpage
+	$$z(v)=g'(v)\stackrel{(7)}{=}1600v^3+310.77v^2-154.586v+4.1437$$	
 	
 	Utilizando o Octave, calculou-se o valor de $z$ nos pontos $v_2$ e $v_3$ (correspondentes a $u_I$ e $u_{II}$). Obteve-se:
 	$$z(v_2)=18.316>0\,,\,\,\,z(v_3)=-6.9075<0$$
@@ -242,10 +235,59 @@ Prof. Marcelo Areias Trindade \\ \\ Prática 1 - Zeros de funções
 	
 	Uma possível explicação sobre esses resultados pode ser obtida quando se observam os valores de $k_{ef}$ em cada situação.
 	Para $u=u_{II}$, o valor da rigidez efetiva é inferior à rigidez de cada mola sozinha. Isso aponta para uma certa 
-	instabilidade. Para $u=u_{II}$, esse valor é quase o dobro.
+	instabilidade. Para $u=u_{I}$, esse valor é quase o dobro.
 	
 	Ademais, se há uma desestabilização em $u=u_{II}$, o sistema tende a retornar para a posição $u=u_{I}$, de equilíbrio
-	estável. 
+	estável.
+	
+	\subsection{Scripts}
+	
+	As figuras que se seguem mostram os scripts em Octave utilizados para os cálculos anteriores, bem como para a geração
+	dos gráficos.
+	
+	\begin{figure}[!htb]
+		\centering
+		\includegraphics[scale=0.7]{img1.png}
+		\caption{Valores de $u$}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.7]{img2.png}
+		\caption{Valores de $k_{ef}$}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.7]{img3.png}
+		\caption{Plot do polinômio $g$}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.7]{img4.png}
+		\caption{Plot da curva de rigidez efetiva}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.7]{img5.png}
+		\caption{Estabilidade do equilíbrio}
+	\end{figure}
+	
+	\newpage
+	
+	\section{Conclusões}
+	
+	Em primeira instância, pode-se dizer que foi realizada uma análise minimamente razoável do problema proposto, de forma
+	que se fez possível a determinação de duas configurações de equilíbrio estático para a estrutura envolvida, as quais 
+	puderam ser caracterizadas com valores de deslocamento e rigidez efetiva.
+	
+	O trabalho com as formulações e equações envolvidas foi conduzido de maneira que as soluções se mostraram coerentes
+	com o problema físico, sobretudo quando se observa o comportamento dos gráficos que foram construídos.
+	
+	Por fim, pode-se afirmar que o uso do Octave como ferramenta computacional auxiliou grandemente na visualização e
+	construção do que foi apresentado anteriormente. 
 			
 \end{document}
 
