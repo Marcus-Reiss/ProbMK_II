@@ -11,7 +11,7 @@
 \author{SEM0530 - Problemas de Engenharia Mecatrônica II \\ 
 Prof. Marcelo Areias Trindade \\ \\ Prática 2 - Aproximação de integrais
 \\ \\ Aluno: Marcus Vinícius Costa Reis (12549384)}
-\date{01/06/2022}
+\date{08/06/2022}
 
 \begin{document}
 	\maketitle \newpage
@@ -28,7 +28,94 @@ Prof. Marcelo Areias Trindade \\ \\ Prática 2 - Aproximação de integrais
 		calcule a aceleração alcançada depois de percorrer $20\,m$.
 		\item Usando um método numérico de aproximação de integrais, determine o tempo necessário para o veículo 
 		percorrer $20\,m$.
-	\end{itemize}		
+	\end{itemize}
+	
+	\subsection{Formulações}
+	
+	Em primeira instância, tendo em vista a dinâmica do problema em questão, vale relembrar alguns princípios da cinemática
+	escalar, os quais auxiliarão nas determinações requeridas.
+	
+	Tem-se que o módulo da velocidade $v$ de um ponto material em uma dada trajetória correponde à taxa de variação da 
+	posição $s$ em função do tempo $t$: \begin{equation} v=\dfrac{ds}{dt}	
+	\end{equation}
+	
+	A seu turno, o módulo da aceleração tangencial $a_t$, responsável por alterar o módulo de $v$, é dada por: 
+	\begin{equation} 
+		a_t=\dfrac{dv}{dt}
+	\end{equation}				
+	
+	Comparando as eq. 1 e 2:
+	$$\dfrac{1}{v}\,ds=\dfrac{1}{a_t}\,dv \Longleftrightarrow a_t\,ds=v\,dv$$ 
+	\begin{equation}
+		\Longleftrightarrow \int a_t(s)\,ds=\int v\,dv
+	\end{equation}		
+	
+	Desse modo, se a aceleração tangencial é conhecida como função da posição, consegue-se encontrar $v$ em função de $s$.
+	
+	Da eq. 1 ainda é possível obter: $$dt=\dfrac{1}{v}\,ds\Longleftrightarrow$$
+	\begin{equation}
+		\int dt=\int \dfrac{1}{v(s)}\,ds
+	\end{equation}
+	
+	Portanto, de forma análoga, obtém-se o tempo em função da posição se é conhecida a expressão de $v$ em função de $s$.
+	
+	Vale ainda ressaltar que o problema em questão anlisa um movimento circular. Sendo assim, há também uma componente normal
+	$a_n$ da aceleração, a qual é dada por:
+	\begin{equation}
+		a_n=\dfrac{v^2}{r}
+	\end{equation}
+	
+	\newpage
+	
+	O módulo da aceleração do ponto material é, por conseguinte, composição das duas componentes:
+	\begin{equation}
+		a=\sqrt{a_t^2+a_n^2}
+	\end{equation}
+	
+	Pode-se, agora, partir para as determinações desejadas.	
+	
+	\subsection{Resultados}
+	
+	\subsubsection{Velocidade}
+	
+	Utilizando-se a eq. 3, juntamente com as informações $a_t(s)=(4-0.01s^2)\,m/s^2$ e $v_0=18.4\,m/s$, obteve-se:
+	
+	$$\int_0^s (4-0.01s^2)\,ds=\int_{18.4}^{v(s)} v\,dv$$
+	$$\Longrightarrow \left[\frac{1}{2}v^2\right]_{18.4}^{v(s)}=\left[4s-\frac{0.01}{3}s^3\right]_{0}^{s}
+	\Longrightarrow v^2(s)=8s-\frac{0.02}{3}s^3+18.4^2$$
+	\begin{equation}
+		\Longleftrightarrow v(s)=\sqrt{338.56+8s-\frac{0.02}{3}s^3}\,\,\,\,(m/s)
+	\end{equation}
+	
+	Avaliando a expressão anterior em $s=20\,m$: $$v_{20}=v(20)=21.1\,m/s$$
+	
+	\subsubsection{Aceleração}
+	
+	Com a eq. 5 e o dado $r=100\,m$, pôde-se encontrar a expressão para a aceleração normal:
+	\begin{equation}
+		a_n(s)=\frac{v^2(s)}{r}=\frac{1}{100}\left(338.56+8s-\frac{0.02}{3}s^3\right)\,\,\,\,(m/s^2)
+	\end{equation}
+	
+	Utilizando-se da eq. 6 e da expressão dada para $a_t(s)$, chegou-se ao módulo da aceleração da partícula:
+	$$a(s)=\sqrt{a_t^2(s)+a_n^2(s)}\Longrightarrow a(s)= \sqrt{(4-0.01s^2)^2+
+	\left[\frac{1}{100}\left(338.56+8s-\frac{0.02}{3}s^3\right)\right]^2}$$
+	$$\Longleftrightarrow a(s)=1.5\times 10^4[s^6+(2.01\times 10^4)s^4+(-1.01568\times 10^5)s^3+(-1.656\times 10^7)s^2+$$
+	$$+\,(1.21882\times 10^8)s+6.17901\times 10^9]\,\,\,\,(m/s^2)$$
+	
+	Avaliando a expressão anterior em $s=20\,m$: $$a_{20}=a(20)=4.4523\,m/s^2$$
+	
+	\subsubsection{Tempo}
+	
+	Por meio da eq. 4, bem como da expressão 7, chegou-se à relação para o tempo $t_{20}$ decorrido após a partícula ter
+	percorrido $20\,m$: $$t_{20}=\int_{0}^{t_{20}}\,dt=\int_{0}^{20}\frac{1}{v(s)}\,ds\Longrightarrow$$
+	
+	\newpage
+	
+	$$\Longrightarrow t_{20}=\int_{0}^{20}\frac{1}{\sqrt{338.56+8s-\dfrac{0.02}{3}s^3}}\,ds=
+	\int_{0}^{20}\left(338.56+8s-\frac{0.02}{3}s^3\right)^{-\frac{1}{2}}\,ds$$
+	
+	Como é possível perceber, a integral anterior não é de trivial resolução. Nesse sentido, optou-se pelo emprego de algumas
+	ferramentas computacionais proporcionadas pelo software \textit{Octave}, no intuito de solucioná-la.
 	
 \end{document}
 
