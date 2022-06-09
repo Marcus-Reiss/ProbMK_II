@@ -1,0 +1,37 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage[top=2cm, bottom=2cm, left=2.2cm, right=2.2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{amsthm}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage{gensymb}
+\usepackage{float}
+\title{Universidade de São Paulo \\ EESC}
+\author{SEM0530 - Problemas de Engenharia Mecatrônica II \\ 
+Prof. Marcelo Areias Trindade \\ \\ Prática 3 - Solução de sistemas lineares
+\\ \\ Aluno: Marcus Vinícius Costa Reis (12549384)}
+\date{15/06/2022}
+
+\begin{document}
+	\maketitle \newpage
+	
+	$$\begin{bmatrix}
+		k_1+k_2 & -k_2 & & & & & & & & \\ -k_2 & k_2+k_3 & -k_3 & & & & & & & \\ & -k_3 & k_3+k_4 & -k_4 & & & & & & \\
+		& & -k_4 & k_4+k_5 & -k_5 & & & & & \\ & & & -k_5 & k_5+k_6 & -k_6 & & & & \\ & & & & -k_6 & k_6+k_7 & -k_7 & & & \\
+		& & & & & -k_7 & k_7+k_8 & -k_8 & & \\ & & & & & & -k_8 & k_8+k_9 & -k_9 & \\ & & & & & & & -k_9 & k_9+k_{10} & 
+		-k_{10} \\ & & & & & & & & -k_{10} & k_{10}
+	\end{bmatrix}$$
+		
+	$$\begin{bmatrix}
+		k_1+k_2 & -k_2 & 0 & \cdots & 0 & 0 \\ -k_2 & k_2+k_3 & -k_3 & 0 & \cdots & 0 \\ 0 & -k_3 & k_3+k_4 & -k_4 
+		& \cdots & 0 \\ \vdots & \cdots & \ddots & \ddots & \cdots & \vdots \\ 0 & \cdots & -k_8 & k_8+k_9 & -k_9 & 0 
+		\\ 0 & \cdots & 0 & -k_9 & k_9+k_{10} & -k_{10}	\\ 0 & 0 & \cdots & 0 & -k_{10} & k_{10}
+	\end{bmatrix} \begin{bmatrix} u_1 \\ u_2 \\ u_3 \\ \vdots \\ u_8 \\ u_9 \\ u_{10} \end{bmatrix}
+	=\begin{bmatrix} f_1 \\ f_2 \\ f_3 \\ \vdots \\ f_8 \\ f_9 \\ f_{10}	\end{bmatrix}$$	
+	
+\end{document}
+
+
+
+
