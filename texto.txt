@@ -1,0 +1,14 @@
+[t,theta] = ang_desloc;
+vpos = find(theta > 6*pi);
+pos = vpos(1)
+pos == 777
+
+t(777)
+t == 15.5200
+
+theta(777)
+ans == 18.8633
+
+r = rad_desloc(t,dt,theta);
+r(777)
+r == 20.0038
