@@ -1,16 +1,16 @@
-% Script utilizado para graficar as evoluções desejadas
+% Script utilizado para graficar as evoluÃ§Ãµes desejadas
 
-% Integração numérica para obter evolução de theta(t)
+% IntegraÃ§Ã£o numÃ©rica para obter evoluÃ§Ã£o de theta(t)
 [t,theta] = ang_desloc; 
 dt = t(2) - t(1);  % passo
 
-% Chamando as funções para obter theta', r, r', v
+% Chamando as funÃ§Ãµes para obter theta', r, r', v
 v = vel(t,dt);
 r = rad_desloc(t,dt,theta);
 theta_pt = ang_vel(t,theta);
 r_pt = rdot(t,dt,theta,theta_pt);
 
-% Construção dos gráficos de evolução
+% ConstruÃ§Ã£o dos grÃ¡ficos de evoluÃ§Ã£o
 i = 'Interpreter'; l = 'latex';
 
 figure(1)  % v x t
@@ -42,3 +42,13 @@ figure(6)  % r_pt vs t
 plot(t,r_pt), grid
 title('Grafico $\dot r$ vs $t$',i,l)
 xlabel('$t \,(s)$',i,l), ylabel('$\dot r (cm/s)$',i,l)
+
+figure(7)  % theta_pt vs theta
+plot(theta,theta_pt), grid
+title('Grafico $\dot \theta$ vs $\theta$',i,l)
+xlabel('$\theta \,(rad)$',i,l), ylabel('$\dot \theta \,(rad/s)$',i,l)
+
+figure(8)  % r_pt vs theta
+plot(theta,r_pt), grid
+title('Grafico $\dot r$ vs $\theta$',i,l)
+xlabel('$\theta \,(rad)$',i,l), ylabel('$\dot r \,(cm/s)$',i,l)
