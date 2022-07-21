@@ -1,13 +1,18 @@
 function p6(seq)
+
+N = 84; % 2 ultimos algarismos do numero USP
+theta_f = (-1)*((90+N)/4)*(pi/180); % angulo de rotacao (rad)
+dtheta = (-1)*(pi/500); % passo
+
 if seq == 1
     % 1a sequencia [z (theta) -> y (theta) -> x (4*theta)]
-    theta = [0:pi/50:43.5*pi/180]; % cautela
+    theta = [0:2*dtheta:theta_f]; 
     thetaxv = [0*theta 0*theta 4*theta];
     thetayv = [0*theta theta theta(end)+0*theta];
     thetazv = [theta theta(end)+0*theta theta(end)+0*theta];
 else
     % 2a sequencia [simultaneamente]
-    theta = [0:pi/100:43.5*pi/180];
+    theta = [0:0.5*dtheta:theta_f];
     thetaxv = [4*theta];
     thetayv = [theta];
     thetazv = [theta];
