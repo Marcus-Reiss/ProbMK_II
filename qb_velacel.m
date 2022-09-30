@@ -2,6 +2,8 @@
 % Angles: t2v, t3v, t4v
 % Mechanism lengths: a, b, c, d
 % Angular velocity w2: w2v
+% n = 1 % circuito aberto
+ n = 2 % circuito cruzado
 
 %% Velocidades angulares:
 w3v = (a*w2v/b).*sin(t4v-t2v)./sin(t3v-t4v);
@@ -74,3 +76,10 @@ w3min = min(w3v), w4min = min(w4v)
 vAmin = min(va_abs), vBmin = min(vb_abs)
 alpha3min = min(alpha3), alpha4min = min(alpha4)
 aAmin = min(aA_abs), aBmin = min(aB_abs)
+
+%% Salvando os valores do circuito aberto:
+if n == 1
+    w3v_open = w3v; w4v_open = w4v;
+    alpha3_open = alpha3; alpha4_open = alpha4;
+    vb_abs_open = vb_abs; aB_abs_open = aB_abs;
+end
