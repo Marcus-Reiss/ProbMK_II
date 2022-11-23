@@ -18,9 +18,9 @@ N=1000;
 % Vector of time instants
 t=linspace(0,1,N)';
 % Vector of values for t2 (for imposed t2 in constant steps)
-  %t2v=t2i+linspace(0,4*pi,N)';
+  t2v=t2i+linspace(0,b3,N)';
   % Vector of values for t2 (for imposed w2 constant)
-   w2=4*pi; t2v=t2i+w2*t; w2v=w2*ones(size(t)); a2v=zeros(size(t));
+   %w2=4*pi; t2v=t2i+w2*t; w2v=w2*ones(size(t)); a2v=zeros(size(t));
     % Vector of values for t2 (for imposed a2 constant)
     % a2=8*pi; t2v=t2i+a2/2*t.^2; a2v=a2*ones(size(t)); w2v=a2*t;
 

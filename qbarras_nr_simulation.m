@@ -1,4 +1,4 @@
-%% Inputs:
+%% Inputs: 
 % Angles: t2v, t3v, t4v
 % Mechanism lengths: a, b, c, d
 % End-effector position: AP, tAP
@@ -12,14 +12,14 @@ rP=rA+AP*[cos(t3v+tAP) sin(t3v+tAP)];
 
 %% Show simulation
 outvid=0; % if =1 outputs GIF video animation
-%figure(1), clf, set(1,'position',[0 0 690 650])
-if outvid==1
+figure(1), clf, set(1,'position',[0 0 690 650])
+if outvid==1 
     filename='qbarras_nr.gif';
     frame=getframe(gcf); im=frame2im(frame); [A,map]=rgb2ind(im,256);
     imwrite(A,map,filename,'gif','LoopCount',Inf,'DelayTime',1e-3);
 end
 rT=[rO2; rA; rB; rO4; rP]; mx=max(max(abs(rT)));
-rT=[rO2; rA; rB; rO4]; mx=max(max(abs(rT))); axis([-mx mx -mx mx]),
+rT=[rO2; rA; rB; rO4]; mx=max(max(abs(rT))); axis([-mx mx -mx mx]), 
 axis tight, axis equal, axis off,
 hAP=line([rA(1,1) rP(1,1)],[rA(1,2) rP(1,2)]); set(hAP,'Color','g','LineStyle','-','Marker','o'),
 hPB=line([rP(1,1) rB(1,1)],[rP(1,2) rB(1,2)]); set(hPB,'Color','g','LineStyle','-','Marker','o'),
@@ -38,6 +38,10 @@ text(rB(1,1)-mx/100,rB(1,2)+mx/20,'$B$')
 text(rO4(1,1)-mx/100,rO4(1,2)-mx/20,'$O_4$')
 text(rP(1,1)-mx/100,rP(1,2)+mx/20,'$P$')
 
+% tentemos fazer as posicoes p1 p2 e p3
+lp1f=[AP*cos(7*pi/6) AP*sin(7*pi/6)];
+lp1=line([W1x W1x+lp1f(1)],[W1y W1y+lp1f(2)]); set(lp1,'Color',.1*[1 3 5],'LineStyle',':'),
+
 if outvid==1 dts=5; else dts=1; end
 for n=2:dts:length(t)
     set(hO2A,'xdata',[rO2(n,1) rA(n,1)],'ydata',[rO2(n,2) rA(n,2)]);
@@ -48,7 +52,7 @@ for n=2:dts:length(t)
     hA=line([rA(n-1,1) rA(n,1)],[rA(n-1,2) rA(n,2)]); set(hA,'Color','r','LineStyle',':');
     hB=line([rB(n-1,1) rB(n,1)],[rB(n-1,2) rB(n,2)]); set(hB,'Color','r','LineStyle',':');
     hP=line([rP(n-1,1) rP(n,1)],[rP(n-1,2) rP(n,2)]); set(hP,'Color','m','LineStyle',':');
-    if outvid==1
+    if outvid==1 
         frame=getframe(gcf); im=frame2im(frame); [A,map]=rgb2ind(im,256);
         imwrite(A,map,filename,'gif','WriteMode','append','DelayTime',1e-3);
     else pause(1e-12);
