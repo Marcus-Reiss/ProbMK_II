@@ -4,10 +4,12 @@
 % End-effector position: AP, tAP
 
 %% Evaluate positions of points O2,A,B,O4,P
-rO2=zeros(length(t2v),2);
+%rO2=zeros(length(t2v),2);
+rO2=[ones(length(t2v),1)*rO2x ones(length(t2v),1)*rO2y];
 rA=a*[cos(t2v) sin(t2v)];
 rB=rA+b*[cos(t3v) sin(t3v)];
-rO4=[rO2(:,1)+d rO2(:,2)];
+%rO4=[rO2(:,1)+d rO2(:,2)];
+rO4=[ones(length(t2v),1)*rO4x ones(length(t2v),1)*rO4y];
 rP=rA+AP*[cos(t3v+tAP) sin(t3v+tAP)];
 
 %% Show simulation
@@ -39,8 +41,8 @@ text(rO4(1,1)-mx/100,rO4(1,2)-mx/20,'$O_4$')
 text(rP(1,1)-mx/100,rP(1,2)+mx/20,'$P$')
 
 % tentemos fazer as posicoes p1 p2 e p3
-lp1f=[AP*cos(7*pi/6) AP*sin(7*pi/6)];
-lp1=line([W1x W1x+lp1f(1)],[W1y W1y+lp1f(2)]); set(lp1,'Color',.1*[1 3 5],'LineStyle',':'),
+% lp1f=[AP*cos(7*pi/6) AP*sin(7*pi/6)];
+% lp1=line([W1x W1x+lp1f(1)],[W1y W1y+lp1f(2)]); set(lp1,'Color',.1*[1 3 5],'LineStyle',':'),
 
 if outvid==1 dts=5; else dts=1; end
 for n=2:dts:length(t)
