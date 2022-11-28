@@ -1,5 +1,5 @@
 %% Sintese analitica de mecanismos
-%% Posições e orientações
+%% PosiÃ§Ãµes e orientaÃ§Ãµes
    P1 = [ 0.000,0.000]; o1 = 210.0/180*pi;
    P2 = [-1.236,2.138]; o2 = 147.5/180*pi;
    P3 = [-2.500,2.931]; o3 = 110.2/180*pi;
@@ -9,7 +9,8 @@
    p31 = norm(P3-P1);
    d3  = atan2((P3(2)-P1(2)),(P3(1)-P1(1)));
    a3  = o3-o1;
-   b2  = -10/180*pi; g2 = -60/180*pi; b3 = 70/180*pi; g3 = -45/180*pi;
+   %b2  = -10/180*pi; g2 = -60/180*pi; b3 = 70/180*pi; g3 = -45/180*pi;
+   b2  = 30/180*pi; g2 = -10/180*pi; b3 = 60/180*pi; g3 = 25/180*pi;
 
 %% Sistemas para determinacao de W1 e Z1
    % Parametros necessarios
@@ -36,24 +37,25 @@
 %% Comprimento dos vetores W, Z, U e S; angulos t e p
    W = sqrt(W1x^2+W1y^2); Z = sqrt(Z1x^2+Z1y^2);
    U = sqrt(U1x^2+U1y^2); S = sqrt(S1x^2+S1y^2);
-   th = acos(W1x/W); p = acos(Z1x/Z); 
+   th = acos(W1x/W); p = 2*pi-acos(Z1x/Z);
    sigma = acos(U1x/U); psi = acos(S1x/S);
 
 %% Traduzindo as variaveis para executar o desenho
    a = W; c = U;
    rO2x = P1(1)-W1x-Z1x; rO2y = P1(2)-W1y-Z1y;
-   rO4x = P1(1)-U1x-S1x; rO4y = P1(2)-U1y-S1y;   
-   dx = Z1x+W1x-U1x-S1x; dy = Z1y+W1y-U1y-S1y;
-   d = sqrt(dx^2+dy^2);   
-   t1 = 2*pi+atan(dy/dx);   
-   bx = Z1x-S1x; by = Z1y-S1y; b = sqrt(bx^2+by^2);  
-   
+   rO4x = P1(1)-U1x-S1x; rO4y = P1(2)-U1y-S1y;
+   %dx = Z1x+W1x-U1x-S1x; dy = Z1y+W1y-U1y-S1y;
+   dx = rO4x-rO2x; dy = rO4y-rO2y; d = sqrt(dx^2+dy^2);
+   %d = sqrt(dx^2+dy^2);
+   t1 = atan2(dy,dx);
+   bx = Z1x-S1x; by = Z1y-S1y; b = sqrt(bx^2+by^2);
+
    AP = Z; t3 = acos(bx/b); tAP = p-t3;
-   t2i = th; t4 = sigma;  
+   t2i = th; t4 = sigma;
 
 %% Chamando o script de simulacao
    %qbarras_nr_pratica3;
-   
+
 %% Verifica Grashof
     ls = [a b c d];
     ls1 = [max(ls) min(ls)];
@@ -66,7 +68,7 @@
         end
     else
         bls = false;
-    end    
+    end
     [bls a b]
     ls
 

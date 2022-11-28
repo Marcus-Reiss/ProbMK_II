@@ -14,20 +14,20 @@ velacel=1;
 % Initial t2
 % t2i=50*(pi/180);
 % Number of steps
-N=500;
+N=100;
 % Vector of time instants
 t=linspace(0,1,N)';
 % Vector of values for t2 (for imposed t2 in constant steps)
-  %t2v=t2i+linspace(0,b3,N)';
+  t2v=t2i+linspace(0,b3,N)';
   % Vector of values for t2 (for imposed w2 constant)
-   w2=4*pi; t2v=t2i+w2*t; w2v=w2*ones(size(t)); a2v=zeros(size(t));
+   %w2=4*pi; t2v=t2i+w2*t; w2v=w2*ones(size(t)); a2v=zeros(size(t));
     % Vector of values for t2 (for imposed a2 constant)
     % a2=8*pi; t2v=t2i+a2/2*t.^2; a2v=a2*ones(size(t)); w2v=a2*t;
 
 %% Newton-Raphson algorithm for the evaluation of t3 and t4 given t2
-tol=1;
+tol=10;
 % Initial guesses for t3 and t4
-  %t3=15*(pi/180); t4=44*(pi/180); % Circuito aberto: 44°; fechado: 179° 
+  %t3=15*(pi/180); t4=44*(pi/180); % Circuito aberto: 44Â°; fechado: 179Â°
 disp('    it2   Iterations')
 for it2=1:length(t2v)
    t2=t2v(it2); B=tol+1; iconv=0;

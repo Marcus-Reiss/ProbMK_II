@@ -1,4 +1,4 @@
-%% Inputs: 
+%% Inputs:
 % Angles: t2v, t3v, t4v
 % Mechanism lengths: a, b, c, d
 % End-effector position: AP, tAP
@@ -6,7 +6,7 @@
 %% Evaluate positions of points O2,A,B,O4,P
 %rO2=zeros(length(t2v),2);
 rO2=[ones(length(t2v),1)*rO2x ones(length(t2v),1)*rO2y];
-rA=a*[cos(t2v) sin(t2v)];
+rA=a*[cos(t2v) sin(t2v)]+rO2;
 rB=rA+b*[cos(t3v) sin(t3v)];
 %rO4=[rO2(:,1)+d rO2(:,2)];
 rO4=[ones(length(t2v),1)*rO4x ones(length(t2v),1)*rO4y];
@@ -15,13 +15,13 @@ rP=rA+AP*[cos(t3v+tAP) sin(t3v+tAP)];
 %% Show simulation
 outvid=0; % if =1 outputs GIF video animation
 figure(1), clf, set(1,'position',[0 0 690 650])
-if outvid==1 
+if outvid==1
     filename='qbarras_nr.gif';
     frame=getframe(gcf); im=frame2im(frame); [A,map]=rgb2ind(im,256);
     imwrite(A,map,filename,'gif','LoopCount',Inf,'DelayTime',1e-3);
 end
 rT=[rO2; rA; rB; rO4; rP]; mx=max(max(abs(rT)));
-rT=[rO2; rA; rB; rO4]; mx=max(max(abs(rT))); axis([-mx mx -mx mx]), 
+rT=[rO2; rA; rB; rO4]; mx=max(max(abs(rT))); axis([-mx mx -mx mx]),
 axis tight, axis equal, axis off,
 hAP=line([rA(1,1) rP(1,1)],[rA(1,2) rP(1,2)]); set(hAP,'Color','g','LineStyle','-','Marker','o'),
 hPB=line([rP(1,1) rB(1,1)],[rP(1,2) rB(1,2)]); set(hPB,'Color','g','LineStyle','-','Marker','o'),
@@ -54,7 +54,7 @@ for n=2:dts:length(t)
     hA=line([rA(n-1,1) rA(n,1)],[rA(n-1,2) rA(n,2)]); set(hA,'Color','r','LineStyle',':');
     hB=line([rB(n-1,1) rB(n,1)],[rB(n-1,2) rB(n,2)]); set(hB,'Color','r','LineStyle',':');
     hP=line([rP(n-1,1) rP(n,1)],[rP(n-1,2) rP(n,2)]); set(hP,'Color','m','LineStyle',':');
-    if outvid==1 
+    if outvid==1
         frame=getframe(gcf); im=frame2im(frame); [A,map]=rgb2ind(im,256);
         imwrite(A,map,filename,'gif','WriteMode','append','DelayTime',1e-3);
     else pause(1e-12);
