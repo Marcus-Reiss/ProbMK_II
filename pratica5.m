@@ -1,5 +1,6 @@
 %% Sintese analitica de mecanismos
-%% PosiÃ§Ãµes e orientaÃ§Ãµes
+
+%% Posições e orientações
    P1 = [ 0.000,0.000]; o1 = 210.0/180*pi;
    P2 = [-1.236,2.138]; o2 = 147.5/180*pi;
    P3 = [-2.500,2.931]; o3 = 110.2/180*pi;
@@ -8,8 +9,7 @@
    a2  = o2-o1;
    p31 = norm(P3-P1);
    d3  = atan2((P3(2)-P1(2)),(P3(1)-P1(1)));
-   a3  = o3-o1;
-   %b2  = -10/180*pi; g2 = -60/180*pi; b3 = 70/180*pi; g3 = -45/180*pi;
+   a3  = o3-o1;  
    b2  = 30/180*pi; g2 = -10/180*pi; b3 = 60/180*pi; g3 = 25/180*pi;
 
 %% Sistemas para determinacao de W1 e Z1
@@ -44,33 +44,12 @@
    a = W; c = U;
    rO2x = P1(1)-W1x-Z1x; rO2y = P1(2)-W1y-Z1y;
    rO4x = P1(1)-U1x-S1x; rO4y = P1(2)-U1y-S1y;
-   %dx = Z1x+W1x-U1x-S1x; dy = Z1y+W1y-U1y-S1y;
+   bx = Z1x-S1x;   by = Z1y-S1y;   b = sqrt(bx^2+by^2);
    dx = rO4x-rO2x; dy = rO4y-rO2y; d = sqrt(dx^2+dy^2);
-   %d = sqrt(dx^2+dy^2);
    t1 = atan2(dy,dx);
-   bx = Z1x-S1x; by = Z1y-S1y; b = sqrt(bx^2+by^2);
-
    AP = Z; t3 = acos(bx/b); tAP = p-t3;
    t2i = th; t4 = sigma;
 
 %% Chamando o script de simulacao
-   %qbarras_nr_pratica3;
-
-%% Verifica Grashof
-    ls = [a b c d];
-    ls1 = [max(ls) min(ls)];
-    ls2 = setdiff(ls,ls1);
-    if sum(ls1) <= sum(ls2)
-        if ls1(2) == a
-            bls = true;
-        else
-            bls = false;
-        end
-    else
-        bls = false;
-    end
-    [bls a b]
-    ls
-
-
+   qbarras_nr_pratica5;
 
