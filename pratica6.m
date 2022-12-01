@@ -1,47 +1,47 @@
 %% Projeto de cames
 
-%% Trechos em repouso
-t1 = [0:pi/100:pi];
-r1 = 0*t1;
-t2 = [240*pi/180:pi/100:300*pi/180-pi/100];
-r2 = 0*t2+1;
+%% Polinomio 3-4-5
 
-%% Polinômio de subida
-% 3-4-5 poly 
-h = 1; ti = pi; tf = 240*pi/180;
-b = (tf-ti);
-t = [ti:pi/100:tf-pi/100]; tt = (t-ti)/b;
-s = h*(10*tt.^3-15*tt.^4+6*tt.^5);
+% Intervalos e constantes
+   dt  = pi/100; % subdivisao
+   tis = pi; tfs = 240*pi/180; tid = 300*pi/180; tfd = 2*pi;
+   t1  = [0:dt:tis];      % intervalo 1 (repouso em h=0)
+   t3  = [tfs:dt:tid-dt]; % intervalo 3 (repouso em h=1cm)
+   ts  = [tis:dt:tfs-dt]; % intervalo 2 (subida)
+   td  = [tid:dt:tfd];    % intervalo 4 (descida)
+   b   = tfs-tis;         % beta
+   tts = (t-tis)/b;   ttd = (td-tid)/b;
+   T   = [0:dt:tfd];
+   h   = 1;
 
-%% Polinômio de descida
-% 3-4-5 poly
-tid = 300*pi/180; tf = 2*pi;
-td = [tid:pi/100:tf]; ttd = (td-tid)/b;
-sd = h*(1-10*ttd.^3+15*ttd.^4-6*ttd.^5);
+% PosiÃ§Ã£o (s)
+   r1 = 0*t1;   r3 = 0*t3+h;
+   ss = h*(10*tts.^3-15*tts.^4+6*tts.^5);   % polinomio de subida
+   sd = h*(1-10*ttd.^3+15*ttd.^4-6*ttd.^5); % polinomio de descida
+   S  = [r1 ss r3 sd];
 
-figure(1)
-hp = plot(t1,r1,t,s,t2,r2,td,sd);
-%stylename = {'LineStyle'}; linestyle = {'--',':'}'; 
-colorname = {'Color'}; color = {'b','b','b','b'}';
-set(hp,'LineWidth',2,colorname,color);
-axis([0 7 -0.5 1.5])
-grid on
+% Velocidade (v)
 
-% figure(2)
-% theta = 0:0.01:2*pi;
-% rho = sin(2*theta).*cos(2*theta);
-% polar(theta,rho)
-% theta1 = 0:pi/100:pi;
-% theta2 = pi:pi/100:2*pi;
-% rho1 = 0*theta1+2;
-% rho2 = 0*theta2+1;
-% tv=[theta1 theta2]; rv=[rho1 rho2];
-% polar(tv,rv)
+% Aceleracao (a)
 
-figure(2)
-tv = [0:pi/100:2*pi]; rv = [r1 s r2 sd];
-pp = polar(tv,rv);
-set(pp,'LineWidth',2,colorname,{'b'});
+% Jerk (j)
+
+% Graficos
+   % diagrama svaj (vo faze td ainda)
+   figure(1)
+   svaj = plot(T,S);
+   %stylename = {'LineStyle'}; linestyle = {'--',':'}';
+   colorname = {'Color'}; color = {'b','b','b','b'}';
+   set(svaj,'LineWidth',2,colorname,color);
+   axis([0 7 -0.5 1.5])
+   grid on
+
+   % desenho do came
+   figure(2)
+   came = polar(T,S);
+   set(came,'LineWidth',2,colorname,{'b'})
+
+
 
 
 
